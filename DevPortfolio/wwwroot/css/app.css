@@ -126,3 +126,14 @@ main.container {
 html {
     scroll-behavior: smooth;
 }
+
+.form-container {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+}
+
+.form-container.expanded {
+    max-height: 1000px; /* enough to show the form fully */
+}
+

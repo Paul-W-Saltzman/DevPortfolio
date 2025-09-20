@@ -22,17 +22,46 @@
                          Description="Description of Project 2"
                          Link="https://github.com/Paul-W-Saltzman/Project2" />
 
-            <!-- Add more projects as needed -->
-
         </div>
     </section>
 
     <!-- Contact -->
     <section id="contact" class="text-center mb-5">
-        <h2>Contact</h2>
-        <p>Email: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
-        <p>GitHub: <a href="https://github.com/Paul-W-Saltzman">Paul-W-Saltzman</a></p>
-        <p>LinkedIn: <a href="https://www.linkedin.com/in/paulwsaltzman">Paul Saltzman</a></p>
+        <h2>Contact Me</h2>
+
+        <button class="btn btn-primary mb-3" @onclick="ToggleForm">
+            @(showForm ? "Hide Contact Form" : "Contact Me")
+        </button>
+
+        <div class="form-container @(showForm ? "expanded" : "")">
+            <form action="https://formspree.io/f/myzdrvdo" method="POST">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Your Name:</label>
+                    <input type="name" id="name" name="name" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="email" class="form-label">Your Email:</label>
+                    <input type="email" id="email" name="email" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="message" class="form-label">Your Message:</label>
+                    <textarea id="message" name="message" class="form-control" required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-success">Send</button>
+            </form>
+        </div>
     </section>
 
 </div>
+
+@code {
+    private bool showForm = false;
+
+    private void ToggleForm()
+    {
+        showForm = !showForm;
+    }
+}
