@@ -11,4 +11,16 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.20" PrivateAssets="all" />
   </ItemGroup>
 
+	<PropertyGroup>
+		<!-- Set your GitHub Pages base href -->
+		<GithubPagesBase>/DevPortfolio/</GithubPagesBase>
+	</PropertyGroup>
+
+	<Target Name="UpdateBaseHref" AfterTargets="Publish">
+		<Message Importance="high" Text="Updating index.html base href for GitHub Pages..." />
+		<Exec Command="sed -i 's|&lt;base href=&quot;/&quot;|&lt;base href=&quot;$(GithubPagesBase)&quot;|' $(PublishDir)wwwroot/index.html" />
+	</Target>
+
+
+
 </Project>
