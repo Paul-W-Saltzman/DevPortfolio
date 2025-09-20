@@ -101,3 +101,28 @@ a, .btn-link {
 code {
     color: #c02d76;
 }
+
+/* Remove old sidebar if any */
+.sidebar {
+    display: none !important;
+}
+
+/* Make .page a normal block container */
+.page {
+    display: block !important;
+}
+
+/* Ensure nav appears on top */
+nav.navbar {
+    width: 100%;
+}
+
+/* Main content spacing */
+main.container {
+    padding-top: 20px;
+}
+
+/* Smooth scrolling for anchor links */
+html {
+    scroll-behavior: smooth;
+}
