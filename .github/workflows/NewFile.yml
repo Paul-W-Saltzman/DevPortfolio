@@ -2,7 +2,7 @@ name: Deploy Blazor WASM to GitHub Pages
 
 on:
   push:
-    branches: ["main"]   # adjust if your default branch is different
+    branches: ["master"]
 
 permissions:
   contents: read
@@ -19,7 +19,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 8.0.x   # match your project version
+          dotnet-version: 8.0.x  
 
       - name: Publish Blazor WASM
         run: dotnet publish -c Release -o release
