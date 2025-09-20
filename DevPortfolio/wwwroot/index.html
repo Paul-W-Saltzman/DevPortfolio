@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DevPortfolio</title>
-    <base href="/DevPortfolio/" />
+    <base href="/" id="app-base-href" />
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
     <link rel="stylesheet" href="css/app.css" />
     <link rel="icon" type="image/png" href="favicon.png" />
@@ -26,6 +26,12 @@
         <a href="" class="reload">Reload</a>
         <a class="dismiss">🗙</a>
     </div>
+    <script>
+        // If hosted on GitHub Pages, adjust base path
+        if (location.hostname.toLowerCase().includes("github.io")) {
+            document.getElementById("app-base-href").setAttribute("href", "/DevPortfolio/");
+        }
+    </script>
     <script src="_framework/blazor.webassembly.js"></script>
 </body>
 
