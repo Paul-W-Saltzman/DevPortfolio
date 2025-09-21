@@ -6,8 +6,17 @@
     <NavMenu />
 
     <!-- Main content -->
-    <main class="container mt-5">
-        @Body
-    </main>
+    <body data-bs-theme="light">
+        <div class="container">
+            @Body
+        </div>
+
+        <button id="theme-toggle" class="btn btn-secondary position-fixed bottom-0 end-0 m-3">
+            🌙 / ☀️
+        </button>
+
+        <script src="theme-toggle.js"></script>
+    </body>
+
 
 </div>
