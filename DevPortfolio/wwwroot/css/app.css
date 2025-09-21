@@ -1,5 +1,14 @@
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+    margin: 0;
+}
+
+.form-container {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
 }
 
 h1:focus {
@@ -136,4 +145,11 @@ html {
 .form-container.expanded {
     max-height: 1000px; /* enough to show the form fully */
 }
+
+.section {
+    height: 100vh; /* full viewport height */
+    scroll-snap-align: start;
+    padding: 2rem;
+}
+
 

@@ -3,14 +3,19 @@
 <div class="container mt-5">
 
     <!-- Home / Landing -->
-    <section id="home" class="text-center mb-5">
+    <div id="home" class="section d-flex flex-column justify-content-center align-items-center">
         <h1>Hi, I'm Paul Saltzman</h1>
         <p>Welcome to my developer portfolio!</p>
-        <a class="btn btn-primary" href="#projects">View Projects</a>
+        <a class="btn btn-primary mt-3" href="#projects">View Projects</a>
+    </div>
+
+    <!-- About -->
+    <section id="about" class="section d-flex flex-column justify-content-center align-items-center">
+        <h2 class="text-center mb-4">About</h2>
     </section>
 
     <!-- Projects -->
-    <section id="projects" class="mb-5">
+    <section id="projects" class="section d-flex flex-column justify-content-center align-items-center">
         <h2 class="text-center mb-4">Projects</h2>
         <div class="row justify-content-center">
 
@@ -26,7 +31,7 @@
     </section>
 
     <!-- Contact -->
-    <section id="contact" class="text-center mb-5">
+    <section id="contact" class="section d-flex flex-column justify-content-center align-items-center">
         <h2>Contact Me</h2>
 
         <button class="btn btn-primary mb-3" @onclick="ToggleForm">
