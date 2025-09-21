@@ -152,4 +152,9 @@ html {
     padding: 2rem;
 }
 
+#about p {
+    text-align: left;
+    max-width: 800px; /* optional, makes lines easier to read */
+}
+
 
