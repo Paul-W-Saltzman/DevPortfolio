@@ -1,20 +1,25 @@
-﻿@inject IJSRuntime JS
-
-<div class="toggle-container">
-    <div class="toggle">
+﻿<div class="toggle-container" @onclick="ToggleTheme">
+    <div class="toggle @(isDark ? "active" : "")">
         <div class="knob">
-            <img src="images/sun.svg" alt="Sun" />
+            <i class="icon @(isDark ? "fa fa-moon" : "fa fa-sun")"></i>
         </div>
     </div>
 </div>
 
-
 @code {
-    private async Task ToggleTheme()
+    private bool isDark = false;
+
+    private void ToggleTheme()
     {
-        await JS.InvokeVoidAsync("toggleTheme");
+        isDark = !isDark;
+
+        var themeColor = isDark ? "#1e1e2e" : "#ffffff";
+        JS.InvokeVoidAsync("setBodyBackground", themeColor);
     }
+
+    [Inject] IJSRuntime JS { get; set; } = default!;
 }
+
 @* 
                     https://medium.com/@webdevtales/create-a-stunning-light-dark-mode-toggle-in-5-minutes-189a66d52e98 
                     https://webdevtales.com/futuristic-light-or-dark-mode-in-5-minutes/*@

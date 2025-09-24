@@ -1,0 +1,80 @@
+﻿/* Toggle Container */
+.toggle-container {
+    position: relative;
+}
+
+/* Toggle Base */
+.toggle {
+    width: 7.5rem;
+    height: 3.75rem;
+    background: linear-gradient(145deg, #28293e, #3a3b5e);
+    border-radius: 3.125rem;
+    display: flex;
+    align-items: center;
+    padding: 0.3rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Knob */
+.knob {
+    width: 3.125rem;
+    height: 3.125rem;
+    background: linear-gradient(145deg, #86A8E7, #91EAE4); /* Gradient effect */
+    border-radius: 50%;
+    box-shadow: 0 5px 15px rgba(134, 168, 231, 0.8);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Icon */
+.icon {
+    font-size: 1.5rem;
+    color: #fff;
+}
+
+/* Toggle On State */
+.toggle.active {
+    background: linear-gradient(145deg, #11172B, #1A1F40);
+    box-shadow: 0 15px 35px rgba(0, 255, 233, 0.3);
+}
+
+/* Knob Active */
+.toggle.active .knob {
+    transform: translateX(60px); /* Move knob to the right */
+    background: linear-gradient(145deg, #91EAE4, #86A8E7); /* Switch gradient */
+    box-shadow: 0 10px 20px rgba(91, 250, 238, 0.8);
+}
+
+/* Ripple Effect */
+.knob::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 7.5rem;
+    height: 7.5rem;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.toggle.active .knob::before {
+    animation: ripple 0.6s ease-out;
+}
+
+@keyframes ripple {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1.5);
+    }
+}
