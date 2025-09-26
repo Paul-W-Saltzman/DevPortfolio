@@ -14,12 +14,9 @@
         isDark = !isDark;
 
         var themeColor = isDark ? "#1e1e2e" : "#ffffff";
-        JS.InvokeVoidAsync("setBodyBackground", themeColor);
+        JS.InvokeVoidAsync("setTheme", isDark);
     }
 
     [Inject] IJSRuntime JS { get; set; } = default!;
 }
 
-@* 
-                    https://medium.com/@webdevtales/create-a-stunning-light-dark-mode-toggle-in-5-minutes-189a66d52e98 
-                    https://webdevtales.com/futuristic-light-or-dark-mode-in-5-minutes/*@

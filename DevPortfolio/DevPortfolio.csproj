@@ -11,6 +11,10 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.20" PrivateAssets="all" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
 	<PropertyGroup>
 		<!-- Set your GitHub Pages base href -->
 		<GithubPagesBase>/DevPortfolio/</GithubPagesBase>
