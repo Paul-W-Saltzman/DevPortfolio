@@ -206,4 +206,9 @@ html {
     max-width: 800px; /* optional, makes lines easier to read */
 }
 
+.card-img-top {
+    height: 180px;
+    object-fit: contain; 
+    border-bottom: 1px solid rgba(0,0,0,.125);
+}
 
