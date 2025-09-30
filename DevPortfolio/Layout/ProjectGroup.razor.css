@@ -8,6 +8,6 @@
 }
 
 .card-img-top {
-    height: 180px; /* keeps all card images same height */
-    object-fit: cover; /* crops instead of stretching */
+    height: 180px; 
+    object-fit: cover; 
 }
