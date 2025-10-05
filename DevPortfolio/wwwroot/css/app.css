@@ -206,27 +206,3 @@ html {
     max-width: 800px; /* optional, makes lines easier to read */
 }
 
-
-.card-row {
-    display: flex;
-    flex-wrap: nowrap; /* Keep all cards in one row */
-    gap: 2rem; /* space between cards */
-    overflow-x: auto; /* allow horizontal scroll */
-    padding-bottom: 1rem; /* optional, for scrollbar space */
-    -webkit-overflow-scrolling: touch; /* smooth scrolling on mobile */
-    scroll-snap-type: x mandatory;
-}
-
-    .card-row::-webkit-scrollbar {
-        height: 8px;
-    }
-
-    .card-row::-webkit-scrollbar-thumb {
-        background-color: rgba(0,0,0,0.3);
-        border-radius: 4px;
-    }
-
-    .card-row::-webkit-scrollbar-track {
-        background: transparent;
-    }
-
