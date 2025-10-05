@@ -49,9 +49,11 @@
 }
 
 /* allow shadow/controls to be visible outside the carousel */
-#projectCarousel {
+(#projectCarousel) {
     position: relative;
-    overflow: visible; /* needed if you want arrows/glow outside */
+    overflow: visible; /* allows arrows and glows outside */
+    max-width: 1000px; /* optional, controls overall carousel width */
+    margin: 0 auto; /* center carousel horizontally */
 }
 
     /* make indicators a normal block under the slides */
@@ -67,12 +69,11 @@
 :deep(.carousel-control-prev) {
     position: absolute;
     top: 50%;
-    left: -50px; /* adjust distance outside carousel */
     transform: translateY(-50%);
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: rgba(0,0,0,0.35);
+    background-color: rgba(0,0,0,0.35); /* optional styling */
     z-index: 10;
     display: flex;
     justify-content: center;
@@ -83,12 +84,11 @@
 :deep(.carousel-control-next) {
     position: absolute;
     top: 50%;
-    right: -50px; /* adjust distance outside carousel */
     transform: translateY(-50%);
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: rgba(0,0,0,0.35);
+    background-color: rgba(0,0,0,0.35); /* optional styling */
     z-index: 10;
     display: flex;
     justify-content: center;
@@ -96,9 +96,12 @@
 }
 
 /* Icon color adjustments */
-:deep(.carousel-control-prev-icon),
+:deep(.carousel-control-prev-icon) {
+    left: -300px;
+}
+
 :deep(.carousel-control-next-icon) {
-    filter: invert(100%);
+    right: -300px;
 }
 
 [data-bs-theme="dark"] :deep(.carousel-control-prev-icon),
