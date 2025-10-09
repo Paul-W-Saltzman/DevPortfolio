@@ -1,49 +1,72 @@
-﻿<section id="projects" class="section d-flex flex-column justify-content-center align-items-center">
-    <h2 class="text-center mb-4">Projects</h2>
+﻿@page "/projectscroller"
 
-    <div id="projectCarousel" class="carousel slide w-100" data-bs-ride="carousel" data-bs-interval="4000">
-        <div class="carousel-inner d-flex">
-
-            <div class="carousel-item active">
-                <div class="d-flex justify-content-center gap-4">
-                    <ProjectGroup Title="C# Console"
-                                  Link="https://github.com/Paul-W-Saltzman/Project1"
-                                  ImageUrl="images/csharp.png" />
-                    <ProjectGroup Title="ASP.Net"
-                                  Link="https://github.com/Paul-W-Saltzman/Project2"
-                                  ImageUrl="images/mvc.png" />
-                    <ProjectGroup Title="Maui"
-                                  Link="https://github.com/Paul-W-Saltzman/Project3"
-                                  ImageUrl="images/maui.png" />
-                </div>
+<div class="carousel-container">
+    <div class="carousel-track" style="transform: translateX(@TranslateX%);">
+        @foreach (var (item, index) in ProjectGroups.Select((item, index) => (item, index)))
+        {
+            var offset = index - CurrentIndex;
+            <div class="carousel-item @(GetPositionClass(offset))">
+                <img src="@item.ImageUrl" alt="@item.Title" />
+                <div class="caption">@item.Title</div>
             </div>
-
-            <div class="carousel-item">
-                <div class="d-flex justify-content-center gap-4">
-                    <ProjectGroup Title="Blazor"
-                                  Link="https://github.com/Paul-W-Saltzman/Project4"
-                                  ImageUrl="images/blazor.png" />
-                    <ProjectGroup Title="C# Console"
-                                  Link="https://github.com/Paul-W-Saltzman/Project1"
-                                  ImageUrl="images/csharp.png" />
-                    <ProjectGroup Title="ASP.Net"
-                                  Link="https://github.com/Paul-W-Saltzman/Project2"
-                                  ImageUrl="images/mvc.png" />
-                </div>
-            </div>
-
-        </div>
-
-        <!-- Carousel Controls -->
-        <button class="carousel-control-prev" type="button" data-bs-target="#projectCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-
-        <button class="carousel-control-next" type="button" data-bs-target="#projectCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
+        }
     </div>
-</section>
+</div>
 
+<button class="carousel-btn left" @onclick="Previous">&#10094;</button>
+<button class="carousel-btn right" @onclick="Next">&#10095;</button>
+
+@code {
+    private List<ProjectGroup> ProjectGroups = new()
+    {
+        new ProjectGroup { Title = "Blazor", Link = "pages/blazor", ImageUrl = "images/blazor.png" },
+        new ProjectGroup { Title = "C# Console", Link = "pages/csharp", ImageUrl = "images/csharp.png" },
+        new ProjectGroup { Title = "MAUI", Link = "pages/maui", ImageUrl = "images/maui.png" },
+        new ProjectGroup { Title = "MVC", Link = "pages/mvc", ImageUrl = "images/mvc.png" }
+    };
+
+
+    private int CurrentIndex = 0;
+    private double TranslateX => -CurrentIndex * 100;
+
+    private void Next()
+    {
+        CurrentIndex = (CurrentIndex + 1) % ProjectGroups.Count;
+    }
+
+    private void Previous()
+    {
+        CurrentIndex = (CurrentIndex - 1 + ProjectGroups.Count) % ProjectGroups.Count;
+    }
+
+    private string GetPositionClass(int offset)
+    {
+        return offset switch
+        {
+            0 => "center",
+            -1 or 1 => "side",
+            _ => "hidden"
+        };
+    }
+
+    private class ProjectItem
+    {
+        public string Title { get; set; } = "";
+        public string ImageUrl { get; set; } = "";
+    }
+
+    // Auto-rotate every few seconds
+    protected override void OnInitialized()
+    {
+        var timer = new System.Timers.Timer(4000);
+        timer.Elapsed += (s, e) =>
+        {
+            InvokeAsync(() =>
+            {
+                Next();
+                StateHasChanged();
+            });
+        };
+        timer.Start();
+    }
+}
