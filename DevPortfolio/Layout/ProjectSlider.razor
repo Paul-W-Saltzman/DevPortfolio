@@ -1,0 +1,64 @@
+﻿@using DevPortfolio.Models
+
+<main id="app">
+    <!-- Background layers -->
+    <section class="backgrounds">
+        @foreach (var project in Projects.Select((p, idx) => (p, idx)))
+        {
+            <div @key="project.idx"
+                 class="background"
+                 style="--primary: var(--@project.p.PrimaryColor); --secondary: var(--@project.p.SecondaryColor)"
+                 data-active="@(project.p.IsActive ? "true" : null)">
+            </div>
+        }
+    </section>
+
+    <!-- Content cards -->
+    <section class="content">
+        @foreach (var project in Projects.Select((p, idx) => (p, idx)))
+        {
+            <article @key="project.idx"
+                     data-active="@(project.p.IsActive ? "true" : null)"
+                     @onclick="() => Activate(project.idx)">
+                <header>
+                    <h1>@project.p.Title</h1>
+                </header>
+                <p>@project.p.Description</p>
+            </article>
+        }
+    </section>
+
+    <!-- Navigation buttons -->
+    <div class="d-flex justify-content-center mt-4">
+        <button class="btn btn-secondary me-2" @onclick="Previous">Previous</button>
+        <button class="btn btn-primary" @onclick="Next">Next</button>
+    </div>
+</main>
+
+@code {
+    private List<ProjectCard> Projects = new()
+    {
+        new ProjectCard { Title = "Middle Seat Tip", Description = "Get the middle seat if you don't check in on time", PrimaryColor = "pink", SecondaryColor = "orange" },
+        new ProjectCard { Title = "Recruiter Zone", Description = "Your boarding zone is 'recruiter'", PrimaryColor = "purple", SecondaryColor = "pink", IsActive = true },
+        new ProjectCard { Title = "Online Check-In", Description = "Check in for your flight online", PrimaryColor = "green", SecondaryColor = "cyan" },
+        new ProjectCard { Title = "Security Line", Description = "Get through security eventually", PrimaryColor = "blue", SecondaryColor = "purple" }
+    };
+
+    private int CurrentIndex => Projects.FindIndex(p => p.IsActive);
+
+    private void Activate(int index)
+    {
+        for (int i = 0; i < Projects.Count; i++)
+            Projects[i].IsActive = i == index;
+    }
+
+    private void Next()
+    {
+        Activate((CurrentIndex + 1) % Projects.Count);
+    }
+
+    private void Previous()
+    {
+        Activate((CurrentIndex - 1 + Projects.Count) % Projects.Count);
+    }
+}
